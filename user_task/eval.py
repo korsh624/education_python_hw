@@ -1,46 +1,23 @@
 # -*- coding: utf-8 -*-
 import cv2
-images=[]
-images_x=[]
-images_y=[]
-images_w=[]
-images_h=[]
-count=True
-drow_rect=False
+import time
+from user_task import fingsqer
+draw=False
+
+im=[]
 ## TODO: Допишите импорт библиотек, которые собираетесь использовать
 img=cv2.imread('C:/git/education_python_hw/user_task/images/4e9d2e0c-f4b0-42b6-8077-4a07f27d8170.jpg')
-while count==True:
-    cv2.imshow("frame",img)
-    frame = cv2.resize(img, (640, 480))
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    thresh = cv2.inRange(hsv, (0,101,35),(182,255,196))
-    thresh = cv2.GaussianBlur(thresh, (15, 15), 2)
-    conts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    conts = conts[0]
+while True:
+    cv2.imshow('img',img)
+    im=fingsqer.findimages(img)
 
-    if conts:
-        cv2.drawContours(frame, conts, -1, (0, 255, 0), 2)
-        for i in range(len(conts)):
-            (x, y, w, h) = cv2.boundingRect(conts[i])
-            images_x.append(x)
-            images_y.append(y)
-            images_w.append(w)
-            images_h.append(h)
-    cv2.imshow("Frame", frame)
-    for item in range(len(images_x)):
-        print(images_x[item])
-        print(images_y[item])
-        print(images_w[item])
-        print(images_h[item])
-        im=frame[y:y+h,x:x+w]
-        images.append(im)
-    if not drow_rect:
-        for i in range(len(images)):
-            cv2.imshow(str(i),images[i])
-            drow_rect=True
-    # count=False
-    if cv2.waitKey(1) == ord('q'):
-        break
+    if not draw:
+        for i in range(len(im)):
+            cv2.imshow(str(i),im[i])
+        draw=True
+    time.sleep(1)
+    print('findet')
+
 
 
 
