@@ -10,13 +10,7 @@ img=cv2.imread('C:/git/education_python_hw/user_task/images/4e9d2e0c-f4b0-42b6-8
 while True:
     cv2.imshow('img',img)
     im=fingsqer.findimages(img)
-
-    if not draw:
-        for i in range(len(im)):
-            cv2.imshow(str(i),im[i])
-        draw=True
-    time.sleep(1)
-    print('findet')
+    print(im)
 
 
 
