@@ -5,6 +5,7 @@ images_x=[]
 images_y=[]
 images_w=[]
 images_h=[]
+count_item=[]
 counts_conts=[]
 count_conts=0
 count=True
@@ -19,7 +20,7 @@ while count==True:
     thresh = cv2.GaussianBlur(thresh, (15, 15), 2)
     conts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     conts = conts[0]
-
+    print(len(conts))
     if conts:
         cv2.drawContours(frame, conts, -1, (0, 255, 0), 2)
         for i in range(len(conts)):
@@ -44,17 +45,19 @@ while count==True:
     for i in range(len(images)):
         im_item = images[i]
         im_item = cv2.cvtColor(im_item, cv2.COLOR_BGR2HSV)
-        im_item = cv2.inRange(im_item, (97,83,101,),(187,250,198))
+        im_item = cv2.inRange(im_item, (106,95,108,),(179,255,198))
         im_item = cv2.GaussianBlur(im_item, (15, 15), 2)
-        conts_item = cv2.findContours(im_item.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        conts_item = conts_item[0]
-        for conts_item_item in conts_item:
-            if conts_item:
-                count_conts+=1
-            print(count_conts)
-        counts_conts.append(count_conts)
-    print(count_conts)
-    # count=False
+        conts_items = cv2.findContours(im_item.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        conts_items = conts_items[0]
+        print(len(conts_items))
+        if conts_items:
+            cv2.drawContours(im_item, conts_items, -1, (255, 0, 0), 2)
+            for i in range(len(conts_items)):
+                (x, y, w, h) = cv2.boundingRect(conts_items[i])
+                count_item.append(x)
+    counts_conts.append(len(count_item))
+    print(counts_conts)
+    count=False
     if cv2.waitKey(1) == ord('q'):
         break
 
