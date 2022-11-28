@@ -1,6 +1,5 @@
 import cv2
 import time
-from user_task import findxywh
 mask_min=0,101,35
 mask_max=182,255,196
 mask_min_item=106,95,108
@@ -16,7 +15,7 @@ while True:
     for i in range(len(frame)):
         if not draw:
             cv2.imshow(str(i),frame[i])
-        point=findxywh.findxywh(frame[i], mask_min_item, mask_max_item)
+        point=findxywh(frame[i], mask_min_item, mask_max_item)
         points.append(len(point))
     draw=True
     print(points)
