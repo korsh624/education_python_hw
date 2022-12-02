@@ -13,7 +13,7 @@ drow_rect=False
 ## TODO: Допишите импорт библиотек, которые собираетесь использовать
 img=cv2.imread('C:/git/education_python_hw/user_task/images/4e9d2e0c-f4b0-42b6-8077-4a07f27d8170.jpg')
 while count==True:
-    cv2.imshow("frame",img)
+    # cv2.imshow("frame",img)
     frame = cv2.resize(img, (640, 480))
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     thresh = cv2.inRange(hsv, (0,101,35),(182,255,196))
@@ -40,7 +40,7 @@ while count==True:
     if not drow_rect:
         for i in range(len(images)):
             cv2.imshow(str(i),images[i])
-            drow_rect=True
+        drow_rect=True
 
     for i in range(len(images)):
         im_item = images[i]
@@ -57,7 +57,7 @@ while count==True:
                 count_item.append(x)
     counts_conts.append(len(count_item))
     print(counts_conts)
-    count=False
+    # count=False
     if cv2.waitKey(1) == ord('q'):
         break
 

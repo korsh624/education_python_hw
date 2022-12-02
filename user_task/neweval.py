@@ -1,6 +1,6 @@
 import cv2
 import time
-from user_task import findxywh
+import findxywh
 mask_min=0,101,35
 mask_max=182,255,196
 mask_min_item=106,95,108
