@@ -31,7 +31,8 @@ def findxywh(img,mask_min,mask_max):
             # print(images_y[item])
             # print(images_w[item])
             # print(images_h[item])
-            im = frame[images_y[item]:images_y[item] + images_h[item], images_x[item]:images_x[item] + images_w[item]]
+            rect_fr=10
+            im = frame[images_y[item]+rect_fr:images_y[item] + images_h[item]-rect_fr, images_x[item]+rect_fr:images_x[item] + images_w[item]-rect_fr]
             images.append(im)
     return images
 img=cv2.imread('C:/git/education_python_hw/user_task/images/4e9d2e0c-f4b0-42b6-8077-4a07f27d8170.jpg')
@@ -78,8 +79,10 @@ def getcontours(img):
 cv2.imshow("frame",img)
 cv2.imshow('contours', pictur[0])
 img_gray=cv2.cvtColor(pictur[0],cv2.COLOR_BGR2GRAY)
-img_blur=cv2.GaussianBlur(img_gray,(7,7),1)
-imgCanny=cv2.Canny(img_blur,50,50)
+img_gray=cv2.resize(img_gray,(640, 480))
+img_blur=cv2.GaussianBlur(img_gray,(3,3),1)
+imgCanny=cv2.Canny(img_blur,10,10)
+cv2.imshow("cany",imgCanny)
 angle_4=getcontours(imgCanny)
 print(angle_4)
 

@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
   
 img = cv2.imread('C:/git/education_python_hw/user_task/shapes.png')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
